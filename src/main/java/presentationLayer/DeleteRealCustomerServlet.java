@@ -1,7 +1,7 @@
 package presentationLayer;
 
 import bussinessLogicLayer.RealCustomerLogic;
-import exception.HibernateExceptions;
+import bussinessLogicLayer.exception.HibernateExceptions;
 import util.OutputGenerator;
 
 import javax.servlet.ServletException;

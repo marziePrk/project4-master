@@ -1,7 +1,9 @@
 package presentationLayer;
 
 import bussinessLogicLayer.RealCustomerLogic;
+import bussinessLogicLayer.exception.HibernateExceptions;
 import dataAccessLayer.RealCustomer;
+import util.OutputGenerator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,7 +24,13 @@ public class UpdateRealCustomerServlet extends HttpServlet {
         String customerNumber = request.getParameter("customerNumber");
         String outHTML = "";
 
-        List<RealCustomer> realCustomers = RealCustomerLogic.retrieveRealCustomerByCustomerNumber(customerNumber);
+        List<RealCustomer> realCustomers = null;
+        try {
+            realCustomers = RealCustomerLogic.retrieveRealCustomerByCustomerNumber(customerNumber);
+        } catch (HibernateExceptions e) {
+            outHTML = OutputGenerator.generateExceptionPage("خطای سیستمی!!!");
+            e.printStackTrace();
+        }
         RealCustomer realCustomer = realCustomers.get(0);
         outHTML = generateRealCustomerUpdatePage(realCustomer);
 

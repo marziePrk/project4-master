@@ -1,4 +1,4 @@
-package exception;
+package bussinessLogicLayer.exception;
 
 /**
  * Created by Dotin school 6 on 8/15/2016.

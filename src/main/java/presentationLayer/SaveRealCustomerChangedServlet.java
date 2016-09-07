@@ -1,9 +1,9 @@
 package presentationLayer;
 
 import bussinessLogicLayer.RealCustomerLogic;
-import exception.DuplicateException;
-import exception.EmptyFieldException;
-import exception.HibernateExceptions;
+import bussinessLogicLayer.exception.DuplicateException;
+import bussinessLogicLayer.exception.EmptyFieldException;
+import bussinessLogicLayer.exception.HibernateExceptions;
 import util.OutputGenerator;
 
 import javax.servlet.ServletException;

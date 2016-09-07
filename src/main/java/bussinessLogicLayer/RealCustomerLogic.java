@@ -2,9 +2,9 @@ package bussinessLogicLayer;
 
 import dataAccessLayer.DAO.RealCustomerDAO;
 import dataAccessLayer.RealCustomer;
-import exception.DuplicateException;
-import exception.EmptyFieldException;
-import exception.HibernateExceptions;
+import bussinessLogicLayer.exception.DuplicateException;
+import bussinessLogicLayer.exception.EmptyFieldException;
+import bussinessLogicLayer.exception.HibernateExceptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class RealCustomerLogic {
 
-    public static boolean checkValidation(String firstName, String lastName, String fatherName, String birthDate, String nationalId) throws EmptyFieldException, DuplicateException {
+    public static boolean checkValidation(String firstName, String lastName, String fatherName, String birthDate, String nationalId) throws EmptyFieldException, DuplicateException, HibernateExceptions {
         if (firstName.equals("")) {
             throw new EmptyFieldException("لطفا فیلد نام  را وارد کنید. ");
         }
@@ -36,7 +36,7 @@ public class RealCustomerLogic {
         return true;
     }
 
-    public static boolean checkValidation(Long id, String firstName, String lastName, String fatherName, String birthDate, String nationalId) throws EmptyFieldException, DuplicateException {
+    public static boolean checkValidation(Long id, String firstName, String lastName, String fatherName, String birthDate, String nationalId) throws EmptyFieldException, DuplicateException, HibernateExceptions {
         if (firstName.equals("")) {
             throw new EmptyFieldException("لطفا فیلد نام  را وارد کنید. ");
         }
@@ -81,12 +81,12 @@ public class RealCustomerLogic {
         return realCustomer;
     }
 
-    public static ArrayList<RealCustomer> retrieveRealCustomer(String firstName, String lastName, String nationalCode) {
+    public static ArrayList<RealCustomer> retrieveRealCustomer(String firstName, String lastName, String nationalCode) throws HibernateExceptions {
         ArrayList<RealCustomer> realCustomers = RealCustomerDAO.retrieveRealCustomer(firstName, lastName, nationalCode);
         return realCustomers;
     }
 
-    public static List<RealCustomer> retrieveRealCustomerByCustomerNumber(String customerNumber) {
+    public static List<RealCustomer> retrieveRealCustomerByCustomerNumber(String customerNumber) throws HibernateExceptions {
         List<RealCustomer> realCustomers = RealCustomerDAO.retrieveRealCustomerByCustomerNumber(customerNumber);
         return realCustomers;
     }

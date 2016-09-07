@@ -1,10 +1,11 @@
 package bussinessLogicLayer;
 
+import bussinessLogicLayer.exception.HibernateExceptions;
 import dataAccessLayer.DAO.GrantConditionDAO;
 import dataAccessLayer.GrantCondition;
 import dataAccessLayer.LoanType;
-import exception.DuplicateException;
-import exception.OutOfRangeException;
+import bussinessLogicLayer.exception.DuplicateException;
+import bussinessLogicLayer.exception.OutOfRangeException;
 
 import java.util.ArrayList;
 
@@ -12,12 +13,12 @@ import java.util.ArrayList;
  * Created by Dotin school 6 on 8/22/2016.
  */
 public class GrantConditionLogic {
-    public static void create(ArrayList<GrantCondition> grantConditionList, String loanTypeName, String interestRate) {
+    public static void create(ArrayList<GrantCondition> grantConditionList, String loanTypeName, String interestRate) throws HibernateExceptions {
         LoanType loanType = new LoanType(loanTypeName, interestRate, grantConditionList);
         GrantConditionDAO.create(loanType, grantConditionList);
     }
 
-    public static boolean validate(GrantCondition grantCondition) throws OutOfRangeException, DuplicateException {
+    public static boolean validate(GrantCondition grantCondition) throws OutOfRangeException, DuplicateException, HibernateExceptions {
         if (grantCondition.getMinDuration() >= grantCondition.getMaxDuration()) {
             throw new OutOfRangeException("حداقل زمان باید کمتر از حداکثر باشد.");
         }

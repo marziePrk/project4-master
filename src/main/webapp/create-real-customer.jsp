@@ -47,23 +47,23 @@
             <table>
                 <tr>
                     <td>نام :</td>
-                    <td><input name="firstName" type="text" placeholder="نام.."></td>
+                    <td><input name="firstName" type="text" placeholder="  نام.."></td>
                 </tr>
                 <tr>
                     <td>نام خانوادگی :</td>
-                    <td><input name="lastName" type="text" placeholder="نام خانوادگی.."></td>
+                    <td><input name="lastName" type="text" placeholder="  نام خانوادگی.."></td>
                 </tr>
                 <tr>
                     <td>نام پدر :</td>
-                    <td><input name="fatherName" type="text" placeholder="نام پدر.."></td>
+                    <td><input name="fatherName" type="text" placeholder="  نام پدر.."></td>
                 </tr>
                 <tr>
                     <td>تاریخ تولد :</td>
-                    <td><input name="birthDate" type="text" placeholder="تاریخ تولد.."></td>
+                    <td><input name="birthDate" type="text" placeholder="  تاریخ تولد.."></td>
                 </tr>
                 <tr>
                     <td>شماره ملی :</td>
-                    <td><input name="nationalCode" type="text" id="nationalCode" placeholder="شماره ملی.."></td>
+                    <td><input name="nationalCode" type="text" id="nationalCode" placeholder="  شماره ملی.."></td>
                 </tr>
 
             </table>

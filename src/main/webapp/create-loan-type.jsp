@@ -1,10 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
-<head lang="fa">
+<head>
     <meta charset="UTF-8">
     <link href="style/Style.css" rel="stylesheet">
-    <meta charset="UTF-8">
     <script>
         function validate() {
           /*  elem.setAttribute("action","create-grant-condition.jsp");
@@ -33,15 +32,15 @@
     <h1 style="color: saddlebrown">لطفا اطلاعات زیر را وارد نمایید:</h1>
     <br>
     <div class="tableBox">
-        <form name="myForm" action="create-grant-condition.jsp"  method="post" onsubmit="return validate()">
+        <form name="myForm" action="/CreateLoanTypeServlet"  method="post" onsubmit="return validate()">
             <table>
                 <tr>
                     <td>نام نوع تسهیلات :</td>
-                    <td><input name="loanTypeName" type="text" placeholder="نام نوع تسهیلات.."></td>
+                    <td><input name="loanTypeName" type="text" placeholder="  نام نوع تسهیلات.."></td>
                 </tr>
                 <tr>
                     <td>نرخ سود :</td>
-                    <td><input name="interestRate" type="text" placeholder="نرخ سود.."></td>
+                    <td><input name="interestRate" type="text" placeholder="  نرخ سود.."></td>
                 </tr>
 
             </table>

@@ -20,15 +20,15 @@
                 <table  >
                     <tr>
                         <td> نام : </td>
-                        <td><input name="firstName" type="text" placeholder="نام.."></td>
+                        <td><input name="firstName" type="text" placeholder="  نام.."></td>
                     </tr>
                     <tr>
-                        <td>نام خانوادگی :</td>
-                        <td><input name="lastName" type="text" placeholder="نام خانوادگی.."></td>
+                        <td>نام خانوادگی:</td>
+                        <td><input name="lastName" type="text" placeholder="  نام خانوادگی.."></td>
                     </tr>
                     <tr>
                         <td>شماره ملی:</td>
-                        <td><input name="nationalCode" type="text" placeholder="شماره ملی.."></td>
+                        <td><input name="nationalCode" type="text" placeholder="  شماره ملی.."></td>
                     </tr>
 
                 </table>
@@ -42,7 +42,7 @@
                 <table >
                     <tr>
                         <td>شماره مشتری:</td>
-                        <td><input name="customerNumber" type="text" placeholder="شماره مشتری.."></td>
+                        <td><input name="customerNumber" type="text" placeholder="  شماره مشتری.."></td>
                     </tr>
                 </table>
                 <br>

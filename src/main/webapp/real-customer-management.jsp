@@ -23,5 +23,15 @@
         <a href="create-loan-type.jsp" class="button">تعریف نوع تسهیلات </a>
         <a href="CreateLoanFileServlet?action=searchLoanTypes" class="button">تشکیل پرونده تسهیلاتی </a>
 </div>
+<%--<script>
+    function doAction(actionType) {
+        document.forms["testForm"].action = actionType;
+        document.forms["testForm"].submit;
+
+    }
+</script>
+<form action="" name="testForm">
+    <input type="button" onclick="doAction('create-real-customer.jsp')" value="تعریف مشتری جدید" class="button" >
+</form>--%>
 </body>
 </html>

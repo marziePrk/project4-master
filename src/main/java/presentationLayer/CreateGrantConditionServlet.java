@@ -1,9 +1,10 @@
 package presentationLayer;
 
 import bussinessLogicLayer.GrantConditionLogic;
+import bussinessLogicLayer.exception.HibernateExceptions;
 import dataAccessLayer.GrantCondition;
-import exception.DuplicateException;
-import exception.OutOfRangeException;
+import bussinessLogicLayer.exception.DuplicateException;
+import bussinessLogicLayer.exception.OutOfRangeException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,15 +19,12 @@ import java.util.ArrayList;
  */
 public class CreateGrantConditionServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        request.setCharacterEncoding("UTF-8");
-        String loanTypeName = request.getParameter("loanTypeName");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF8");
+        String loanTypeName = request.getParameter("loanType");
         String interestRate = request.getParameter("interestRate");
         int grantConditionNumber = Integer.parseInt(request.getParameter("rowNumber"));
 
-        response.setContentType("text/html; charset=UTF-8");
-        response.setCharacterEncoding("UTF-8");
 
         ArrayList<GrantCondition> grantConditionList = new ArrayList<GrantCondition>();
         try {
@@ -40,20 +38,29 @@ public class CreateGrantConditionServlet extends HttpServlet {
                 GrantConditionLogic.validate(grantCondition);
                 grantConditionList.add(grantCondition);
             }
-            GrantConditionLogic.create(grantConditionList, loanTypeName, interestRate);
-            request.setAttribute("title", "تایید ثبت تسهیلات");
-            request.setAttribute("header", "تسهیلات " + loanTypeName + " با موفقیت ثبت شد.");
-            getServletConfig().getServletContext().getRequestDispatcher("/result-page.jsp").forward(request, response);
-
+            if (grantConditionList.size() > 0) {
+                GrantConditionLogic.create(grantConditionList, loanTypeName, interestRate);
+                request.setAttribute("title", "تایید ثبت تسهیلات");
+                request.setAttribute("header", "تسهیلات " + loanTypeName + " با موفقیت ثبت شد.");
+                //getServletConfig().getServletContext().getRequestDispatcher("/result-page.jsp").forward(request, response);
+            } else {
+                request.setAttribute("title", "خطا");
+                request.setAttribute("header", "ثبت تسهیلات بدون شروط اعطا امکان پذیر نمی باشد.");
+                //getServletContext().getRequestDispatcher("/result-page.jsp").forward(request, response);
+            }
         } catch (OutOfRangeException e) {
             request.setAttribute("title", "خطا");
             request.setAttribute("header", e.getMessage());
-            getServletContext().getRequestDispatcher("/result-page.jsp").forward(request, response);
+            //getServletContext().getRequestDispatcher("/result-page.jsp").forward(request, response);
         } catch (DuplicateException e) {
             request.setAttribute("title", "خطا");
             request.setAttribute("header", e.getMessage());
-            getServletContext().getRequestDispatcher("/result-page.jsp").forward(request, response);
+            //getServletContext().getRequestDispatcher("/result-page.jsp").forward(request, response);
+        } catch (HibernateExceptions e) {
+            request.setAttribute("title", "خطا");
+            request.setAttribute("header", e.getMessage());
+            //getServletContext().getRequestDispatcher("/result-page.jsp").forward(request, response);        }
+        }finally {
+            getServletContext().getRequestDispatcher("/result-page.jsp").forward(request, response);        }
         }
-
     }
-}

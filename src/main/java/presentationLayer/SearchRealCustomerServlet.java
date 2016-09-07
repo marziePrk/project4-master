@@ -1,6 +1,7 @@
 package presentationLayer;
 
 import bussinessLogicLayer.RealCustomerLogic;
+import bussinessLogicLayer.exception.HibernateExceptions;
 import dataAccessLayer.RealCustomer;
 import util.OutputGenerator;
 
@@ -25,7 +26,7 @@ public class SearchRealCustomerServlet extends HttpServlet {
         String outputHTML = "";
         List<RealCustomer> realCustomers;
 
-        //try {
+        try {
             if (customerNumber == null) {
                 realCustomers = RealCustomerLogic.retrieveRealCustomer(firstName, lastName, nationalCode);
             } else {
@@ -33,9 +34,10 @@ public class SearchRealCustomerServlet extends HttpServlet {
             }
         outputHTML = OutputGenerator.generateRealCustomerSearchResult(realCustomers);
 
-        //}catch (){
-
-        //}
+        } catch (HibernateExceptions e) {
+            outputHTML = OutputGenerator.generateExceptionPage("خطای سیستمی!!!");
+            e.printStackTrace();
+        }
         response.setContentType("text/html ;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();

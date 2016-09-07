@@ -1,4 +1,4 @@
-package exception;
+package bussinessLogicLayer.exception;
 
 /**
  * Created by ASUS on 9/1/2016.

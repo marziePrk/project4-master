@@ -37,7 +37,7 @@
 
   <servlet>
     <servlet-name>CreateLoanTypeServlet</servlet-name>
-    <servlet-class>bussinessLogicLayer.CreateLoanTypeServlet</servlet-class>
+    <servlet-class>presentationLayer.CreateLoanTypeServlet</servlet-class>
   </servlet>
 
   <servlet>

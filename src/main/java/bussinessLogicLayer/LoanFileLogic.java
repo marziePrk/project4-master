@@ -8,20 +8,19 @@ import dataAccessLayer.GrantCondition;
 import dataAccessLayer.LoanFile;
 import dataAccessLayer.LoanType;
 import dataAccessLayer.RealCustomer;
-import exception.HibernateExceptions;
-import exception.OutOfRangeException;
+import bussinessLogicLayer.exception.HibernateExceptions;
+import bussinessLogicLayer.exception.OutOfRangeException;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Formatter;
 import java.util.List;
 
 /**
  * Created by Dotin school 6 on 8/22/2016.
  */
 public class LoanFileLogic {
-    public static ArrayList<LoanType> retrieveAll() {
-        ArrayList<LoanType> loanTypes = LoanTypeDAO.retrieveLoanTypes();
+    public static ArrayList<LoanType> retrieveAllLoanTypes() throws HibernateExceptions {
+        ArrayList<LoanType> loanTypes = (ArrayList<LoanType>) LoanTypeLogic.retrieveLoanTypes();
         return loanTypes;
     }
 
@@ -33,7 +32,7 @@ public class LoanFileLogic {
         return realCustomer;
     }
 
-    public static int validate(String amount, String duration , int loanTyoeId) throws OutOfRangeException {
+    public static int validate(String amount, String duration , int loanTyoeId) throws OutOfRangeException, HibernateExceptions {
         List<GrantCondition> grantConditions = GrantConditionDAO.retrieveByLoanId(loanTyoeId);
         for (GrantCondition grantCondition : grantConditions) {
             if ((Long.parseLong(duration) <= grantCondition.getMaxDuration()) && (Long.parseLong(duration) >= grantCondition.getMinDuration())) {

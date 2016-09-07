@@ -1,7 +1,7 @@
 package dataAccessLayer.DAO;
 
 import dataAccessLayer.LoanFile;
-import exception.HibernateExceptions;
+import bussinessLogicLayer.exception.HibernateExceptions;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -18,14 +18,14 @@ public class LoanFileDAO {
         try {
             session.save(loanFile);
             transaction.commit();
-            session.close();
             Logger.getLogger(LoanFile.class).info("loan file retrieved.");
         } catch (HibernateException ex) {
             Logger.getLogger(LoanFile.class).info("loan file dose not retrieved.");
             transaction.rollback();
-            session.close();
             ex.printStackTrace();
-            throw new HibernateExceptions("create Loan File exception.......");
+            throw new HibernateExceptions("خطا سیستمی...");
+        }finally {
+            session.close();
         }
 
     }
